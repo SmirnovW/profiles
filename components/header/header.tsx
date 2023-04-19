@@ -13,7 +13,7 @@ export const Header: React.FC<Props> = () => {
 
 	return (
 		<Navbar isBordered>
-			<Navbar.Content hideIn="xs">
+			<Navbar.Content>
 				<Navbar.Link
 					isActive={router.pathname === ROUTES.HOME}
 					href="/"

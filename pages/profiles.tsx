@@ -30,15 +30,17 @@ export default function Profiles() {
 	};
 
 	const generateProfiles = async () => {
-		setError('');
-		setLoading(true);
-		const data = await fetchProfiles(resultsAmount);
+		if (!isLoading) {
+			setError('');
+			setLoading(true);
+			const data = await fetchProfiles(resultsAmount);
 
-		setLoading(false);
-		if (data.status === HttpStatusCode.OK) {
-			setProfiles(data.data);
-		} else {
-			setError(data?.error);
+			setLoading(false);
+			if (data.status === HttpStatusCode.OK) {
+				setProfiles(data.data);
+			} else {
+				setError(data?.error);
+			}
 		}
 	};
 
@@ -75,9 +77,13 @@ export default function Profiles() {
 						</Dropdown.Menu>
 					</Dropdown>
 					<Spacer y={1} />
-					<Button
-						onClick={generateProfiles}
-					>{`Fetch ${resultsAmount} profiles`}</Button>
+					<Button onClick={generateProfiles}>
+						{isLoading ? (
+							<Loading type="points" color="white" size="sm" />
+						) : (
+							`Fetch ${resultsAmount} profiles`
+						)}
+					</Button>
 				</Container>
 				<Spacer y={2} />
 				{error && (
