@@ -1,4 +1,4 @@
-import React, { MouseEvent, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Button, Container, Row, Col, Card, Text } from '@nextui-org/react';
 import { Icon } from 'components/icon';
 import { getDaysUntilDate, pluralize } from 'utils';
@@ -8,6 +8,7 @@ import {
 	ICON_HEART_TEST_ID,
 	ADD_TO_FAVORITES_TEST_ID,
 } from 'constants/test-ids';
+import { PressEvent } from '@react-types/shared';
 
 type Props = {
 	profile: Profile;
@@ -27,8 +28,8 @@ export const ProfileCard: React.FC<Props> = ({ profile }) => {
 
 	const [isInFavorites, setIsInFavorites] = useState(isItAddedToFavorites);
 
-	const addToFavorites = (event: MouseEvent) => {
-		const id = event.target.value;
+	const addToFavorites = (event: PressEvent) => {
+		const id = (event.target as HTMLButtonElement).value;
 		const favoriteProfiles =
 			JSON.parse(window.localStorage.getItem('favorite-profiles')) || {};
 
@@ -115,10 +116,10 @@ export const ProfileCard: React.FC<Props> = ({ profile }) => {
 					zIndex: 1,
 				}}
 			>
-				<Container direction="column" gap={0} x={0}>
-					<Row justify="flex-start" gap={0} spacing={0} x={0}>
-						<Col x={0}>
-							<Text color="$white" size="$lg" weight="$extrabold">
+				<Container direction="column" gap={0}>
+					<Row justify="flex-start" gap={0}>
+						<Col>
+							<Text color="$white" size="$lg" weight="extrabold">
 								{profile.name.title
 									? `${profile.name.title}. `
 									: ''}

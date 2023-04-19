@@ -34,7 +34,7 @@ export function useLikeAnimation() {
 				{children}
 				<div
 					className={styles.particles}
-					style={{ '--total-particles': 6 }}
+					style={{ '--total-particles': 6 } as React.CSSProperties}
 				>
 					{palette.map((color, index) => (
 						<div
@@ -42,7 +42,12 @@ export function useLikeAnimation() {
 							className={`${styles.particle} ${
 								isAnimated ? styles.animationParticle : ''
 							}`}
-							style={{ '--i': index + 1, '--color': color }}
+							style={
+								{
+									'--i': index + 1,
+									'--color': color,
+								} as React.CSSProperties
+							}
 						/>
 					))}
 				</div>
