@@ -53,7 +53,14 @@ export const ProfileCard: React.FC<Props> = ({ profile }) => {
 	const daysUntilDate = getDaysUntilDate(new Date(profile.dob.date));
 
 	return (
-		<Card css={{ w: '200px', h: '300px' }}>
+		<Card
+			css={{
+				w: '200px',
+				h: '300px',
+				filter: 'unset',
+				transitionProperty: 'none'
+			}}
+		>
 			<Card.Header
 				css={{
 					position: 'absolute',
